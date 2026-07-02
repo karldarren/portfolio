@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://your-domain.vercel.app/sitemap.xml", // Replace with your actual domain
+    sitemap: "https://portfolio-karldarren.vercel.app/sitemap.xml",
   };
 }
