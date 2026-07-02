@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import AnimatedSection from "./AnimatedSection";
 
 const projects = [
@@ -10,6 +11,7 @@ const projects = [
       "Developed and maintained a web-based enrollment management system for Western Colleges, Inc. using PHP/Laravel and MySQL. Deployed on Hostinger with consistent uptime for students and staff.",
     tags: ["PHP", "Laravel", "MySQL", "Hostinger"],
     live: "https://wci-homeofthechampion.cloud/",
+    image: "/projects/wci-enrollment.png",
   },
   {
     title: "CaviteNest",
@@ -18,6 +20,7 @@ const projects = [
       "Built a property rental and booking platform as a capstone project, then took over as sole developer in 2026. Expanded it into a fully functional rental booking system deployed on Vercel.",
     tags: ["NestJS", "TypeScript", "MongoDB", "Vercel"],
     live: "https://cavitenest.com/",
+    image: "/projects/cavitenest.png",
   },
 ];
 
@@ -32,32 +35,45 @@ export default function Projects() {
         <div className="grid md:grid-cols-2 gap-6">
           {projects.map((project, index) => (
             <AnimatedSection key={project.title} delay={index * 0.15}>
-              <div className="p-6 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-neutral-600 transition-colors group h-full">
-                <h3 className="text-xl font-semibold mb-1 group-hover:text-[var(--accent)] transition-colors">
-                  {project.title}
-                </h3>
-                <p className="text-sm text-[var(--accent)] mb-3">{project.role}</p>
-                <p className="text-neutral-400 text-sm mb-4 leading-relaxed">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-xs px-2.5 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+              <div className="rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:border-neutral-600 transition-colors group overflow-hidden h-full flex flex-col">
+                {/* Project screenshot */}
+                <div className="relative w-full h-48 bg-[var(--background)] overflow-hidden">
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
                 </div>
-                <a
-                  href={project.live}
-                  className="text-sm text-neutral-400 hover:text-white transition-colors"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Live →
-                </a>
+                {/* Content */}
+                <div className="p-6 flex flex-col flex-1">
+                  <h3 className="text-xl font-semibold mb-1 group-hover:text-[var(--accent)] transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-sm text-[var(--accent)] mb-3">{project.role}</p>
+                  <p className="text-neutral-400 text-sm mb-4 leading-relaxed flex-1">
+                    {project.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mb-5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-2.5 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <a
+                    href={project.live}
+                    className="text-sm text-neutral-400 hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View Live →
+                  </a>
+                </div>
               </div>
             </AnimatedSection>
           ))}
