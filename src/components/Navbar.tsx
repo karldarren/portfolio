@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -12,6 +12,25 @@ const navLinks = [
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(`#${entry.target.id}`);
+          }
+        });
+      },
+      { rootMargin: "-40% 0px -60% 0px" }
+    );
+
+    const sections = document.querySelectorAll("section[id]");
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--card-border)]">
@@ -26,7 +45,11 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm text-neutral-400 hover:text-white transition-colors"
+                className={`text-sm transition-colors ${
+                  activeSection === link.href
+                    ? "text-[var(--accent)]"
+                    : "text-neutral-400 hover:text-white"
+                }`}
               >
                 {link.label}
               </a>
@@ -57,7 +80,11 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="block text-sm text-neutral-400 hover:text-white transition-colors"
+                className={`block text-sm transition-colors ${
+                  activeSection === link.href
+                    ? "text-[var(--accent)]"
+                    : "text-neutral-400 hover:text-white"
+                }`}
                 onClick={() => setMenuOpen(false)}
               >
                 {link.label}

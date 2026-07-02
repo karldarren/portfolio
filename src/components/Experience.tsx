@@ -1,3 +1,7 @@
+"use client";
+
+import AnimatedSection from "./AnimatedSection";
+
 const experiences = [
   {
     title: "MIS / IT Admin Staff (PEAC Coordinator)",
@@ -38,31 +42,32 @@ export default function Experience() {
   return (
     <section id="experience" className="py-24 px-6 bg-[var(--card-bg)]">
       <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
-        <div className="h-1 w-16 bg-[var(--accent)] rounded mb-12" />
+        <AnimatedSection>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Experience</h2>
+          <div className="h-1 w-16 bg-[var(--accent)] rounded mb-12" />
+        </AnimatedSection>
         <div className="space-y-8">
           {experiences.map((exp, index) => (
-            <div
-              key={index}
-              className="relative pl-6 border-l-2 border-[var(--card-border)] hover:border-[var(--accent)] transition-colors"
-            >
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--accent)]" />
-              <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                <div>
-                  <h3 className="text-lg font-semibold">{exp.title}</h3>
-                  <p className="text-[var(--accent)] text-sm">{exp.company} — {exp.location}</p>
+            <AnimatedSection key={index} delay={index * 0.1}>
+              <div className="relative pl-6 border-l-2 border-[var(--card-border)] hover:border-[var(--accent)] transition-colors">
+                <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[var(--accent)]" />
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                  <div>
+                    <h3 className="text-lg font-semibold">{exp.title}</h3>
+                    <p className="text-[var(--accent)] text-sm">{exp.company} — {exp.location}</p>
+                  </div>
+                  <span className="text-sm text-neutral-500 mt-1 md:mt-0">{exp.period}</span>
                 </div>
-                <span className="text-sm text-neutral-500 mt-1 md:mt-0">{exp.period}</span>
+                <ul className="space-y-2 mt-3">
+                  {exp.points.map((point, i) => (
+                    <li key={i} className="text-sm text-neutral-400 leading-relaxed flex gap-2">
+                      <span className="text-[var(--accent)] mt-1 shrink-0">•</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="space-y-2 mt-3">
-                {exp.points.map((point, i) => (
-                  <li key={i} className="text-sm text-neutral-400 leading-relaxed flex gap-2">
-                    <span className="text-[var(--accent)] mt-1 shrink-0">•</span>
-                    {point}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>
