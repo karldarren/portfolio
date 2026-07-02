@@ -1,25 +1,29 @@
 const skillCategories = [
   {
-    title: "Frontend",
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML/CSS"],
+    title: "Web Development",
+    skills: ["HTML", "CSS", "JavaScript", "React.js", "Next.js", "NestJS", "PHP/Laravel"],
   },
   {
-    title: "Backend",
-    skills: ["Node.js", "Express", "REST APIs", "PostgreSQL", "MongoDB"],
+    title: "Database & Hosting",
+    skills: ["MySQL", "MongoDB", "Vercel", "Hostinger", "Network Administration"],
   },
   {
-    title: "Tools & Others",
-    skills: ["Git", "GitHub", "Vercel", "Figma", "VS Code"],
+    title: "IT & Technical",
+    skills: ["Hardware Repair", "System Formatting", "MikroTik Configuration", "LAN/Networking", "Troubleshooting"],
+  },
+  {
+    title: "Tools & Software",
+    skills: ["Git", "VS Code", "Microsoft Office Suite", "DaVinci Resolve", "CapCut", "Figma"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6">
+    <section id="skills" className="py-24 px-6 bg-[var(--card-bg)]">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
         <div className="h-1 w-16 bg-[var(--accent)] rounded mb-12" />
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {skillCategories.map((category) => (
             <div key={category.title}>
               <h3 className="text-lg font-semibold mb-4 text-[var(--accent)]">
@@ -29,7 +33,7 @@ export default function Skills() {
                 {category.skills.map((skill) => (
                   <li
                     key={skill}
-                    className="flex items-center gap-2 text-neutral-400"
+                    className="flex items-center gap-2 text-neutral-400 text-sm"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
                     {skill}

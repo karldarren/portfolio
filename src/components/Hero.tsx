@@ -9,7 +9,7 @@ export default function Hero() {
           Karl Darren De Sosa
         </h1>
         <p className="text-lg md:text-xl text-neutral-400 mb-8 max-w-xl mx-auto">
-          A passionate developer building modern web experiences with clean code and creative solutions.
+          BS Information Technology graduate with hands-on experience in web-based system development, IT support, and network administration.
         </p>
         <div className="flex gap-4 justify-center">
           <a

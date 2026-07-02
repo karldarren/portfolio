@@ -7,27 +7,34 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-4 text-neutral-400 leading-relaxed">
             <p>
-              I&apos;m a developer who thrives on turning ideas into functional, elegant digital
-              products. With a strong foundation in modern web technologies, I craft
-              responsive interfaces and robust backend systems.
+              I&apos;m a BS Information Technology graduate from Cavite State University (Magna Cum Laude)
+              with hands-on experience in web-based system development, IT support, and network
+              administration within academic environments.
             </p>
             <p>
-              When I&apos;m not coding, you&apos;ll find me exploring new technologies, contributing
-              to open source, or learning something completely new.
+              Skilled in building and maintaining school information systems using PHP/Laravel and MySQL,
+              deploying systems on Hostinger, managing campus-wide network connectivity, and resolving
+              hardware, software, and network issues to minimize downtime.
+            </p>
+            <p>
+              Currently developing CaviteNest, a property rental and booking platform using NestJS,
+              TypeScript, and MongoDB, deployed on Vercel. Also experienced in providing technical
+              support for live events and streaming activities.
             </p>
           </div>
           <div className="space-y-4">
             <div className="p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]">
-              <p className="text-sm text-neutral-500 uppercase tracking-wide">Experience</p>
-              <p className="text-lg font-semibold mt-1">2+ Years</p>
+              <p className="text-sm text-neutral-500 uppercase tracking-wide">Education</p>
+              <p className="text-lg font-semibold mt-1">BS Information Technology</p>
+              <p className="text-sm text-neutral-400">Cavite State University — Magna Cum Laude</p>
             </div>
             <div className="p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]">
-              <p className="text-sm text-neutral-500 uppercase tracking-wide">Projects</p>
-              <p className="text-lg font-semibold mt-1">10+ Completed</p>
+              <p className="text-sm text-neutral-500 uppercase tracking-wide">Location</p>
+              <p className="text-lg font-semibold mt-1">Cavite, Philippines</p>
             </div>
             <div className="p-4 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]">
               <p className="text-sm text-neutral-500 uppercase tracking-wide">Focus</p>
-              <p className="text-lg font-semibold mt-1">Full-Stack Web Dev</p>
+              <p className="text-lg font-semibold mt-1">Full-Stack Web Dev & IT Support</p>
             </div>
           </div>
         </div>
