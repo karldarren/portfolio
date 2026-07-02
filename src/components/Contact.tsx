@@ -46,14 +46,14 @@ export default function Contact() {
             <div className="grid md:grid-cols-2 gap-4">
               <input
                 type="text"
-                name="from_name"
+                name="name"
                 placeholder="Name"
                 required
                 className="w-full px-4 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-neutral-500 focus:outline-none focus:border-[var(--accent)] transition-colors"
               />
               <input
                 type="email"
-                name="from_email"
+                name="email"
                 placeholder="Email"
                 required
                 className="w-full px-4 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-neutral-500 focus:outline-none focus:border-[var(--accent)] transition-colors"
@@ -61,7 +61,7 @@ export default function Contact() {
             </div>
             <input
               type="text"
-              name="subject"
+              name="title"
               placeholder="Subject"
               required
               className="w-full px-4 py-3 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-neutral-500 focus:outline-none focus:border-[var(--accent)] transition-colors"
