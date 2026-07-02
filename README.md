@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Karl Darren De Sosa | Portfolio
+
+A modern, responsive developer portfolio built with Next.js, TypeScript, and Tailwind CSS. Deployed on Vercel.
+
+🔗 **Live:** [portfolio-karldarren.vercel.app](https://portfolio-karldarren.vercel.app)
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **Blog:** MDX (next-mdx-remote)
+- **Contact Form:** EmailJS
+- **Deployment:** Vercel
+
+## Features
+
+- ✅ Responsive design (mobile-first)
+- ✅ Dark/Light theme toggle with persistence
+- ✅ Scroll-in animations on all sections
+- ✅ Active navbar highlighting on scroll
+- ✅ MDX-powered blog with reading time
+- ✅ Working contact form (EmailJS)
+- ✅ Resume download button
+- ✅ Project cards with screenshots
+- ✅ Back-to-top button
+- ✅ Loading animation
+- ✅ Custom 404 page
+- ✅ SEO optimized (Open Graph, sitemap, robots.txt)
+
+## Sections
+
+- Hero with gradient background
+- About Me
+- Work Experience (timeline)
+- Projects with live links
+- Skills (categorized)
+- Certifications
+- Contact Form
+- Blog
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Blog
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Add new posts by creating `.mdx` files in `content/blog/`:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+content/blog/
+├── my-developer-journey.mdx
+└── building-cavitenest.mdx
+```
 
-## Learn More
+Each post needs frontmatter:
 
-To learn more about Next.js, take a look at the following resources:
+```mdx
+---
+title: "Post Title"
+date: "2026-01-01"
+excerpt: "Short description"
+tags: ["Tag1", "Tag2"]
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Your content here...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Environment Variables
 
-## Deploy on Vercel
+Create a `.env.local` file:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── blog/           # Blog pages
+│   ├── globals.css     # Theme & global styles
+│   ├── layout.tsx      # Root layout + SEO
+│   ├── not-found.tsx   # Custom 404
+│   ├── page.tsx        # Home page
+│   ├── robots.ts       # SEO robots.txt
+│   └── sitemap.ts      # SEO sitemap
+├── components/
+│   ├── About.tsx
+│   ├── AnimatedSection.tsx
+│   ├── BackToTop.tsx
+│   ├── Certifications.tsx
+│   ├── Contact.tsx
+│   ├── Experience.tsx
+│   ├── Footer.tsx
+│   ├── Hero.tsx
+│   ├── LoadingScreen.tsx
+│   ├── Navbar.tsx
+│   ├── Projects.tsx
+│   ├── Skills.tsx
+│   └── ThemeToggle.tsx
+└── lib/
+    └── blog.ts         # Blog utilities
+```
+
+## Author
+
+**Karl Darren De Sosa**
+- BS Information Technology — Cavite State University (Magna Cum Laude)
+- Full-Stack Web Developer & IT Support Specialist
+
+## License
+
+This project is for personal use.
