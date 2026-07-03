@@ -5,48 +5,57 @@ import AnimatedSection from "./AnimatedSection";
 const skillCategories = [
   {
     title: "Web Development",
+    icon: "🌐",
     skills: ["HTML", "CSS", "JavaScript", "React.js", "Next.js", "NestJS", "PHP/Laravel"],
   },
   {
     title: "Database & Hosting",
-    skills: ["MySQL", "MongoDB", "Vercel", "Hostinger", "Network Administration"],
+    icon: "🗄️",
+    skills: ["MySQL", "MongoDB", "Vercel", "Hostinger", "Network Admin"],
   },
   {
     title: "IT & Technical",
-    skills: ["Hardware Repair", "System Formatting", "MikroTik Configuration", "LAN/Networking", "Troubleshooting"],
+    icon: "🔧",
+    skills: ["Hardware Repair", "System Formatting", "MikroTik Config", "LAN/Networking", "Troubleshooting"],
   },
   {
     title: "Tools & Software",
-    skills: ["Git", "VS Code", "Microsoft Office Suite", "DaVinci Resolve", "CapCut", "Figma"],
+    icon: "⚡",
+    skills: ["Git", "VS Code", "MS Office Suite", "DaVinci Resolve", "CapCut", "Figma"],
   },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6 bg-[var(--card-bg)]">
+    <section id="skills" className="py-24 px-6 relative">
       <div className="max-w-4xl mx-auto">
         <AnimatedSection>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Skills</h2>
-          <div className="h-1 w-16 bg-[var(--accent)] rounded mb-12" />
+          <div className="flex items-center gap-3 mb-12">
+            <span className="font-mono text-[var(--terminal-green)] text-sm">04.</span>
+            <h2 className="text-3xl md:text-4xl font-bold">Skills</h2>
+            <div className="h-px flex-1 bg-gradient-to-r from-[var(--card-border)] to-transparent" />
+          </div>
         </AnimatedSection>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 gap-6">
           {skillCategories.map((category, index) => (
             <AnimatedSection key={category.title} delay={index * 0.1}>
-              <div>
-                <h3 className="text-lg font-semibold mb-4 text-[var(--accent)]">
-                  {category.title}
-                </h3>
-                <ul className="space-y-2">
+              <div className="p-6 rounded-xl glass hover:scale-[1.02] transition-transform gradient-border-animated">
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-2xl">{category.icon}</span>
+                  <h3 className="text-lg font-semibold font-mono text-[var(--accent)]">
+                    {category.title}
+                  </h3>
+                </div>
+                <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <li
+                    <span
                       key={skill}
-                      className="flex items-center gap-2 text-neutral-400 text-sm"
+                      className="text-xs font-mono px-3 py-1.5 rounded-lg bg-[var(--accent)]/5 border border-[var(--accent)]/20 text-neutral-400 hover:text-[var(--accent)] hover:border-[var(--accent)]/50 transition-colors"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
                       {skill}
-                    </li>
+                    </span>
                   ))}
-                </ul>
+                </div>
               </div>
             </AnimatedSection>
           ))}

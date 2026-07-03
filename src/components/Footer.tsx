@@ -1,32 +1,35 @@
 export default function Footer() {
   return (
-    <footer className="py-8 px-6 border-t border-[var(--card-border)]">
+    <footer className="py-8 px-6 border-t border-[var(--glass-border)]">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-neutral-500">
-          © {new Date().getFullYear()} Karl Darren De Sosa. All rights reserved.
+        <p className="font-mono text-sm text-neutral-500">
+          <span className="text-[var(--terminal-green)]">©</span> {new Date().getFullYear()} Karl Darren De Sosa
+        </p>
+        <p className="font-mono text-xs text-neutral-600">
+          Built with <span className="text-[var(--accent)]">Next.js</span> + <span className="text-[var(--accent-secondary)]">Tailwind CSS</span>
         </p>
         <div className="flex gap-6">
           <a
             href="https://github.com/karldarren"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-neutral-500 hover:text-white transition-colors"
+            className="font-mono text-sm text-neutral-500 hover:text-[var(--accent)] transition-colors"
           >
-            GitHub
+            github
           </a>
           <a
-            href="https://www.linkedin.com/in/karl-darren-de-sosa-6234443bb/"
+            href="https://linkedin.com/in/karldarren"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-neutral-500 hover:text-white transition-colors"
+            className="font-mono text-sm text-neutral-500 hover:text-[var(--accent)] transition-colors"
           >
-            LinkedIn
+            linkedin
           </a>
           <a
             href="mailto:karldarrendesosa@gmail.com"
-            className="text-sm text-neutral-500 hover:text-white transition-colors"
+            className="font-mono text-sm text-neutral-500 hover:text-[var(--accent)] transition-colors"
           >
-            Email
+            email
           </a>
         </div>
       </div>

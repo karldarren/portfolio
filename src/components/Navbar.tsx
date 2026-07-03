@@ -15,6 +15,13 @@ const navLinks = [
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -35,22 +42,24 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[var(--background)]/80 backdrop-blur-md border-b border-[var(--card-border)]">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass border-b border-[var(--glass-border)]" : ""}`}>
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold tracking-tight">
-          KD<span className="text-[var(--accent)]">.</span>
+        <a href="#" className="text-xl font-bold tracking-tight font-mono group">
+          <span className="text-[var(--terminal-green)]">&lt;</span>
+          KD
+          <span className="text-[var(--terminal-green)]">/&gt;</span>
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden md:flex gap-8">
+        <ul className="hidden md:flex gap-6">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className={`text-sm transition-colors ${
+                className={`text-sm font-medium px-3 py-1.5 rounded-lg transition-all ${
                   activeSection === link.href
-                    ? "text-[var(--accent)]"
-                    : "text-neutral-400 hover:text-white"
+                    ? "text-[var(--accent)] glass glow-cyan"
+                    : "text-neutral-400 hover:text-[var(--foreground)]"
                 }`}
               >
                 {link.label}
@@ -63,8 +72,8 @@ export default function Navbar() {
           <ThemeToggle />
           {/* Mobile toggle */}
           <button
-            className="md:hidden text-neutral-400 hover:text-white"
-          onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden text-neutral-400 hover:text-[var(--foreground)]"
+            onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,15 +89,15 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <ul className="md:hidden px-6 pb-4 space-y-3">
+        <ul className="md:hidden px-6 pb-4 space-y-2 glass mx-4 rounded-xl mt-2">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
                 href={link.href}
-                className={`block text-sm transition-colors ${
+                className={`block text-sm py-2 px-3 rounded-lg transition-colors ${
                   activeSection === link.href
-                    ? "text-[var(--accent)]"
-                    : "text-neutral-400 hover:text-white"
+                    ? "text-[var(--accent)] bg-[var(--accent)]/10"
+                    : "text-neutral-400 hover:text-[var(--foreground)]"
                 }`}
                 onClick={() => setMenuOpen(false)}
               >

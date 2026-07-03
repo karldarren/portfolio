@@ -2,21 +2,33 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --card-bg: #141414;
-  --card-border: #262626;
+  --background: #050505;
+  --foreground: #e4e4e7;
+  --accent: #22d3ee;
+  --accent-hover: #06b6d4;
+  --accent-secondary: #a78bfa;
+  --card-bg: rgba(24, 24, 27, 0.6);
+  --card-border: rgba(63, 63, 70, 0.5);
+  --terminal-green: #4ade80;
+  --terminal-yellow: #facc15;
+  --terminal-red: #f87171;
+  --glass-bg: rgba(24, 24, 27, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
 }
 
 :root.light {
-  --background: #ffffff;
-  --foreground: #1a1a1a;
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --card-bg: #f5f5f5;
-  --card-border: #e5e5e5;
+  --background: #fafafa;
+  --foreground: #18181b;
+  --accent: #0891b2;
+  --accent-hover: #0e7490;
+  --accent-secondary: #7c3aed;
+  --card-bg: rgba(255, 255, 255, 0.7);
+  --card-border: rgba(0, 0, 0, 0.08);
+  --terminal-green: #16a34a;
+  --terminal-yellow: #ca8a04;
+  --terminal-red: #dc2626;
+  --glass-bg: rgba(255, 255, 255, 0.5);
+  --glass-border: rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -30,10 +42,109 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.light .text-white {
-  color: var(--foreground);
+.font-mono {
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
 }
 
+/* Glassmorphism card */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Animated gradient border */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-border-animated {
+  position: relative;
+}
+
+.gradient-border-animated::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--terminal-green), var(--accent));
+  background-size: 300% 300%;
+  animation: gradient-shift 4s ease infinite;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.gradient-border-animated:hover::before {
+  opacity: 1;
+}
+
+/* Typing cursor */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 60px rgba(34, 211, 238, 0.05);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.15), 0 0 60px rgba(167, 139, 250, 0.05);
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 5s ease-in-out infinite;
+}
+
+/* Pulse glow for accents */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Grid background pattern */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.light .bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+/* Light theme text overrides */
 .light .text-neutral-400 {
   color: #525252;
 }

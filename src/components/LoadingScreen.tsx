@@ -7,7 +7,7 @@ export default function LoadingScreen() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const timer = setTimeout(() => setLoading(false), 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -17,7 +17,7 @@ export default function LoadingScreen() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-[var(--background)]"
         >
           <motion.div
@@ -26,18 +26,29 @@ export default function LoadingScreen() {
             transition={{ duration: 0.4 }}
             className="text-center"
           >
-            <h1 className="text-4xl font-bold tracking-tight">
-              KD<span className="text-[var(--accent)]">.</span>
-            </h1>
-            <div className="mt-4 flex gap-1 justify-center">
-              {[0, 1, 2].map((i) => (
+            <div className="glass rounded-2xl px-8 py-6 glow-cyan">
+              <h1 className="text-3xl font-bold font-mono tracking-tight mb-3">
+                <span className="text-[var(--terminal-green)]">&lt;</span>
+                KD
+                <span className="text-[var(--terminal-green)]">/&gt;</span>
+              </h1>
+              <div className="font-mono text-sm text-neutral-500">
+                <span className="text-[var(--terminal-green)]">$</span> loading
+                <motion.span
+                  animate={{ opacity: [1, 0] }}
+                  transition={{ duration: 0.5, repeat: Infinity }}
+                >
+                  _
+                </motion.span>
+              </div>
+              <div className="mt-4 h-1 w-32 mx-auto rounded-full overflow-hidden bg-[var(--card-border)]">
                 <motion.div
-                  key={i}
-                  className="w-2 h-2 rounded-full bg-[var(--accent)]"
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 0.6, repeat: Infinity, delay: i * 0.15 }}
+                  className="h-full bg-gradient-to-r from-[var(--accent)] to-[var(--accent-secondary)] rounded-full"
+                  initial={{ width: "0%" }}
+                  animate={{ width: "100%" }}
+                  transition={{ duration: 1.2, ease: "easeInOut" }}
                 />
-              ))}
+              </div>
             </div>
           </motion.div>
         </motion.div>
