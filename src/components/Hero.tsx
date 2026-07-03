@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import FloatingIcons from "./FloatingIcons";
 
 function TypingEffect({ texts }: { texts: string[] }) {
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
@@ -41,6 +42,9 @@ function TypingEffect({ texts }: { texts: string[] }) {
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden bg-grid">
+      {/* Floating tech icons */}
+      <FloatingIcons />
+
       {/* Floating gradient orbs */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[var(--accent)]/8 rounded-full blur-[120px] animate-float" />

@@ -48,10 +48,14 @@ body {
 
 /* Glassmorphism card */
 .glass {
-  background: var(--glass-bg);
+  background: rgba(24, 24, 27, 0.8);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border: 1px solid var(--glass-border);
+}
+
+.light .glass {
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Animated gradient border */
@@ -63,19 +67,24 @@ body {
 
 .gradient-border-animated {
   position: relative;
+  z-index: 0;
 }
 
 .gradient-border-animated::before {
   content: '';
   position: absolute;
-  inset: -1px;
+  inset: 0;
   border-radius: inherit;
+  padding: 1px;
   background: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--terminal-green), var(--accent));
   background-size: 300% 300%;
   animation: gradient-shift 4s ease infinite;
-  z-index: -1;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.3s;
+  z-index: -1;
 }
 
 .gradient-border-animated:hover::before {
