@@ -112,7 +112,7 @@ export default function Hero() {
             View Projects
           </a>
           <a
-            href="/resume.pdf"
+            href="/karldarrendesosa-resume.pdf"
             download
             className="px-6 py-3 glass rounded-xl font-medium transition-all hover:scale-105 hover:glow-cyan flex items-center gap-2 group"
           >
