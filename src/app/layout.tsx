@@ -1,39 +1,70 @@
 import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ThemeScript from "@/components/layout/ThemeScript";
+import { personJsonLd, websiteJsonLd } from "@/lib/seo";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const SITE_URL = "https://portfolio-karldarren.vercel.app";
 
 export const metadata: Metadata = {
-  title: "Karl Darren De Sosa | Full-Stack Developer",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Karl Darren De Sosa | System Builder",
+    template: "%s | Karl Darren De Sosa",
+  },
   description:
-    "BS Information Technology graduate with hands-on experience in web-based system development, IT support, and network administration. Skilled in PHP/Laravel, Next.js, NestJS, and more.",
+    "Karl Darren De Sosa — System Builder. Full-Stack Developer, Systems Builder, and IT & Network Specialist. I build practical digital systems, automate manual processes, and solve real-world technical problems.",
   keywords: [
     "Karl Darren De Sosa",
-    "Full Stack Developer",
-    "Web Developer",
+    "System Builder",
+    "Full-Stack Developer",
+    "System Development",
+    "IT Support",
+    "Network Administration",
+    "Automation",
     "PHP Laravel",
     "Next.js",
     "NestJS",
-    "Portfolio",
+    "MikroTik",
     "Cavite",
     "Philippines",
   ],
   authors: [{ name: "Karl Darren De Sosa" }],
+  creator: "Karl Darren De Sosa",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    title: "Karl Darren De Sosa | Full-Stack Developer",
+    url: SITE_URL,
+    title: "Karl Darren De Sosa | System Builder",
     description:
-      "BS IT graduate building modern web experiences. Check out my projects and get in touch.",
-    siteName: "Karl Darren De Sosa Portfolio",
+      "I build practical digital systems, automate manual processes, and solve real-world technical problems.",
+    siteName: "Karl Darren De Sosa",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Karl Darren De Sosa | Full-Stack Developer",
+    title: "Karl Darren De Sosa | System Builder",
     description:
-      "BS IT graduate building modern web experiences. Check out my projects and get in touch.",
+      "Full-Stack Developer • Systems Builder • IT & Network Specialist.",
   },
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 
@@ -43,8 +74,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <ThemeScript />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd(SITE_URL)) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd(SITE_URL)) }}
+        />
+      </head>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
