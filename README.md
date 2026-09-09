@@ -91,30 +91,32 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
 ```
 src/
 ├── app/
-│   ├── blog/           # Blog pages
-│   ├── globals.css     # Theme & global styles
-│   ├── layout.tsx      # Root layout + SEO
-│   ├── not-found.tsx   # Custom 404
-│   ├── page.tsx        # Home page
-│   ├── robots.ts       # SEO robots.txt
-│   └── sitemap.ts      # SEO sitemap
+│   ├── blog/                # Blog pages
+│   ├── globals.css          # Design tokens & global styles
+│   ├── layout.tsx           # Root layout + fonts + SEO + JSON-LD
+│   ├── not-found.tsx        # Custom 404
+│   ├── opengraph-image.tsx  # Dynamic OG image
+│   ├── page.tsx             # Home page composition
+│   ├── robots.ts            # SEO robots.txt
+│   └── sitemap.ts           # SEO sitemap
 ├── components/
-│   ├── About.tsx
-│   ├── AnimatedSection.tsx
-│   ├── BackToTop.tsx
-│   ├── Certifications.tsx
-│   ├── Contact.tsx
-│   ├── Experience.tsx
-│   ├── Footer.tsx
-│   ├── Hero.tsx
-│   ├── LoadingScreen.tsx
-│   ├── Navbar.tsx
-│   ├── Projects.tsx
-│   ├── Skills.tsx
-│   └── ThemeToggle.tsx
+│   ├── layout/              # DashboardShell, Sidebar, Topbar, MobileMenu, Footer, ThemeToggle, ThemeScript, BackToTop, useActiveSection
+│   ├── motion/              # Shared Framer Motion variants
+│   ├── sections/            # Hero, Stats, Projects, MoreThanCode, Services, About, Experience, Skills, Approach, Certifications, Contact
+│   └── ui/                  # Container, Section, SectionHeading, Card, Button, Tag, Icon, TerminalWindow
+├── data/                    # profile, nav, experience, projects, skills, services, certifications, technologies, stats
+├── data/                    # Centralized content (profile, experience, projects, skills, services, certs, technologies, stats)
 └── lib/
-    └── blog.ts         # Blog utilities
+    ├── blog.ts              # Blog utilities
+    └── seo.ts               # JSON-LD structured data helpers
 ```
+
+## Design System
+
+Design tokens live in `src/app/globals.css` as CSS custom properties (color, spacing,
+radius, shadow, motion). Fonts are self-hosted via `next/font` (Geist Sans + Geist Mono).
+Theme is applied pre-hydration by `ThemeScript` to avoid flash of the wrong theme, and all
+non-essential motion respects `prefers-reduced-motion`.
 
 ## Author
 

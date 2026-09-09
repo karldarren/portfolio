@@ -1,167 +1,315 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ============================================================
+   DESIGN TOKENS — "System Builder" design system
+   ============================================================ */
 :root {
-  --background: #050505;
-  --foreground: #e4e4e7;
-  --accent: #22d3ee;
-  --accent-hover: #06b6d4;
-  --accent-secondary: #a78bfa;
-  --card-bg: rgba(24, 24, 27, 0.6);
-  --card-border: rgba(63, 63, 70, 0.5);
-  --terminal-green: #4ade80;
-  --terminal-yellow: #facc15;
-  --terminal-red: #f87171;
-  --glass-bg: rgba(24, 24, 27, 0.4);
+  /* Surfaces */
+  --color-bg: #050608;
+  --color-bg-elevated: #0b0d11;
+  --color-surface: #101319;
+  --color-surface-hover: #151922;
+
+  /* Borders */
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.14);
+
+  /* Grid texture (fainter than borders) */
+  --grid-line: rgba(255, 255, 255, 0.035);
+
+  /* Text */
+  --color-text: #e6e8ec;
+  --color-text-muted: #a3aab6;
+  --color-text-faint: #8b93a1;
+
+  /* Accents / signal */
+  --color-accent: #22d3ee;
+  --color-accent-hover: #06b6d4;
+  --color-accent-2: #a78bfa;
+  --color-signal: #4ade80;
+  --color-warn: #facc15;
+  --color-danger: #f87171;
+
+  /* Primary CTA — dark theme: bright-but-controlled cyan with dark ink.
+     Kept separate from --color-accent so links/icons stay untouched. */
+  --cta-bg: #22d3ee;
+  --cta-bg-hover: #38dcf2;
+  --cta-bg-active: #0fbfdd;
+  --cta-text: #04222a;
+  --cta-ring: rgba(34, 211, 238, 0.55);
+  --cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.30), 0 6px 16px rgba(34, 211, 238, 0.18);
+  --cta-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.30), 0 10px 24px rgba(34, 211, 238, 0.26);
+
+  /* Secondary CTA — outlined, lower visual weight */
+  --cta2-bg: rgba(255, 255, 255, 0.02);
+  --cta2-bg-hover: rgba(34, 211, 238, 0.08);
+  --cta2-border: rgba(34, 211, 238, 0.35);
+  --cta2-border-hover: var(--color-accent);
+  --cta2-text: var(--color-text);
+  --cta2-text-hover: var(--color-accent);
+
+  /* Glass */
+  --glass-bg: rgba(16, 19, 25, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+  --radius-2xl: 28px;
+
+  /* Shadows — dark theme: restrained, crisp elevation (not foggy) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.35);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.30), 0 4px 12px rgba(0, 0, 0, 0.28);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.30), 0 12px 28px rgba(0, 0, 0, 0.32);
+  --shadow-glow-cyan: 0 0 0 1px rgba(34, 211, 238, 0.25), 0 0 32px rgba(34, 211, 238, 0.12);
+  --shadow-glow-violet: 0 0 0 1px rgba(167, 139, 250, 0.25), 0 0 32px rgba(167, 139, 250, 0.12);
+
+  /* Motion */
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 400ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Fonts (wired by next/font variables in layout) */
+  --font-sans: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-geist-mono), "JetBrains Mono", "Fira Code", monospace;
 }
 
 :root.light {
-  --background: #fafafa;
-  --foreground: #18181b;
-  --accent: #0891b2;
-  --accent-hover: #0e7490;
-  --accent-secondary: #7c3aed;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --card-border: rgba(0, 0, 0, 0.08);
-  --terminal-green: #16a34a;
-  --terminal-yellow: #ca8a04;
-  --terminal-red: #dc2626;
-  --glass-bg: rgba(255, 255, 255, 0.5);
-  --glass-border: rgba(0, 0, 0, 0.06);
+  --color-bg: #fafafa;
+  --color-bg-elevated: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f5f6f7;
+  --color-border: rgba(0, 0, 0, 0.09);
+  --color-border-strong: rgba(0, 0, 0, 0.16);
+  --grid-line: rgba(0, 0, 0, 0.04);
+  --color-text: #1a1a1a;
+  --color-text-muted: #5f6368;
+  --color-text-faint: #7a7f85;
+  --color-accent: #0e7490;
+  --color-accent-hover: #155e75;
+  --color-accent-2: #7c3aed;
+  --color-signal: #15803d;
+  --color-warn: #b45309;
+  --color-danger: #dc2626;
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(0, 0, 0, 0.08);
+
+  /* Light theme: crisp, lightweight elevation (not washed-out) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 1px 2px rgba(0, 0, 0, 0.03), 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 4px 12px rgba(0, 0, 0, 0.04), 0 12px 28px rgba(0, 0, 0, 0.05);
+
+  /* Primary CTA — light theme: strong, saturated teal-blue with white text.
+     #0e7490 on #fff ≈ 4.9:1 (WCAG AA for normal text); hover deepens. */
+  --cta-bg: #0e7490;
+  --cta-bg-hover: #0c637c;
+  --cta-bg-active: #0a5265;
+  --cta-text: #ffffff;
+  --cta-ring: rgba(14, 116, 144, 0.5);
+  --cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(14, 116, 144, 0.22);
+  --cta-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.10), 0 8px 20px rgba(14, 116, 144, 0.30);
+
+  /* Secondary CTA — outlined on light surfaces.
+     Stronger border + accent text so it reads clearly clickable (not disabled). */
+  --cta2-bg: #ffffff;
+  --cta2-bg-hover: #eef7fa;
+  --cta2-border: rgba(14, 116, 144, 0.45);
+  --cta2-border-hover: var(--color-accent);
+  --cta2-text: var(--color-accent);
+  --cta2-text-hover: var(--color-accent-hover);
 }
 
-* {
+/* ============================================================
+   BASE
+   ============================================================ */
+html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: system-ui, -apple-system, sans-serif;
-  transition: background-color 0.3s, color 0.3s;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--dur-base), color var(--dur-base);
+  overflow-x: hidden;
 }
 
 .font-mono {
-  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Courier New', monospace;
+  font-family: var(--font-mono);
 }
 
-/* Glassmorphism card */
+::selection {
+  background: rgba(34, 211, 238, 0.25);
+  color: var(--color-text);
+}
+
+/* Focus visibility */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+/* Restrained glassmorphism — subtle blur so content stays crisp */
 .glass {
-  background: rgba(24, 24, 27, 0.8);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: var(--glass-bg);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border: 1px solid var(--glass-border);
 }
 
-.light .glass {
-  background: rgba(255, 255, 255, 0.8);
+/* Subtle grid background texture — kept fainter than card borders so it never competes */
+.bg-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 35%, transparent 100%);
 }
 
-/* Animated gradient border */
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* ------------------------------------------------------------
+   BUTTONS / CTAs — shared, theme-aware, WCAG-friendly contrast.
+   Restrained micro-interactions (150–200ms), 1px lift on hover.
+   ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  border: 1px solid transparent;
+  /* Kill any inherited gradient/tint so the CTA reads as a solid, confident fill */
+  background-image: none;
+  transition:
+    background-color 180ms var(--ease-standard),
+    border-color 180ms var(--ease-standard),
+    color 180ms var(--ease-standard),
+    transform 180ms var(--ease-standard),
+    box-shadow 180ms var(--ease-standard);
+}
+.btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 4px var(--cta-ring);
 }
 
-.gradient-border-animated {
-  position: relative;
-  z-index: 0;
+/* PRIMARY — the strong, unmistakable CTA */
+.btn-primary {
+  background-color: var(--cta-bg);
+  color: var(--cta-text);
+  box-shadow: var(--cta-shadow);
+}
+.btn-primary:hover {
+  background-color: var(--cta-bg-hover);
+  box-shadow: var(--cta-shadow-hover);
+  transform: translateY(-1px);
+}
+.btn-primary:active {
+  background-color: var(--cta-bg-active);
+  transform: translateY(0);
+  box-shadow: var(--cta-shadow);
+}
+.btn-primary:disabled,
+.btn-primary[aria-disabled="true"] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--cta-shadow);
 }
 
-.gradient-border-animated::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-secondary), var(--terminal-green), var(--accent));
-  background-size: 300% 300%;
-  animation: gradient-shift 4s ease infinite;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.3s;
-  z-index: -1;
+/* SECONDARY — clearly clickable, lower weight than primary */
+.btn-secondary {
+  background-color: var(--cta2-bg);
+  color: var(--cta2-text);
+  border-color: var(--cta2-border);
+  box-shadow: var(--shadow-sm);
+}
+.btn-secondary:hover {
+  background-color: var(--cta2-bg-hover);
+  border-color: var(--cta2-border-hover);
+  color: var(--cta2-text-hover);
+  transform: translateY(-1px);
+}
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
 }
 
-.gradient-border-animated:hover::before {
-  opacity: 1;
+/* Gradient accent text (used sparingly) */
+.text-gradient {
+  background: linear-gradient(120deg, var(--color-accent), var(--color-accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-/* Typing cursor */
+/* Blinking terminal cursor */
 @keyframes blink {
   0%, 50% { opacity: 1; }
   51%, 100% { opacity: 0; }
 }
-
 .cursor-blink {
-  animation: blink 1s infinite;
+  animation: blink 1.1s steps(1) infinite;
 }
 
-/* Glow effects */
-.glow-cyan {
-  box-shadow: 0 0 30px rgba(34, 211, 238, 0.15), 0 0 60px rgba(34, 211, 238, 0.05);
-}
-
-.glow-purple {
-  box-shadow: 0 0 30px rgba(167, 139, 250, 0.15), 0 0 60px rgba(167, 139, 250, 0.05);
-}
-
-/* Floating animation */
+/* Soft floating orbs */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-12px); }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
 }
-
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-8px) rotate(2deg); }
-}
-
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 7s ease-in-out infinite;
 }
-
 .animate-float-slow {
-  animation: float-slow 5s ease-in-out infinite;
+  animation: float 11s ease-in-out infinite;
 }
 
-/* Pulse glow for accents */
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.5; }
-  50% { opacity: 1; }
+/* Pulsing status dot */
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.5); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+}
+.pulse-dot {
+  animation: pulse-dot 2.2s ease-in-out infinite;
 }
 
-.pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  .animate-float,
+  .animate-float-slow,
+  .pulse-dot,
+  .cursor-blink {
+    animation: none !important;
+  }
 }
 
-/* Grid background pattern */
-.bg-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-.light .bg-grid {
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-}
-
-/* Light theme text overrides */
-.light .text-neutral-400 {
-  color: #525252;
-}
-
-.light .text-neutral-500 {
-  color: #737373;
-}
-
-.light .placeholder-neutral-500::placeholder {
-  color: #a3a3a3;
+/* Prose (blog) tuning */
+.prose :where(code):not(:where([class~="not-prose"] *))::before,
+.prose :where(code):not(:where([class~="not-prose"] *))::after {
+  content: "";
 }
